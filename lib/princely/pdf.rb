@@ -24,6 +24,7 @@ module Princely
       @media = options[:media]
       @javascript_flag = options[:javascript_flag]
       @timeout = options[:timeout]
+      @http_timeout = options[:http_timeout].to_i
     end
 
     # Returns the instance logger or Princely default logger
@@ -57,6 +58,7 @@ module Princely
       options << "--log=#{log_file}"
       options << "--media=#{media}" if media
       options << "--javascript" if @javascript_flag
+      options << "--http-timeout=#{@http_timeout}" if @http_timeout > 0
       options << @style_sheets
       options
     end
